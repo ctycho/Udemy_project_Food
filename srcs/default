@@ -1,0 +1,15 @@
+ server {
+     listen 8080;
+     listen [::]:8080;
+     server_name localhost;
+
+    root /var/www/html/project/;
+    index index.html;
+	location / {
+		try_files $uri $uri/ =404;
+	}
+	location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+		fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+	}
+ }
